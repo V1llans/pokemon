@@ -1,31 +1,17 @@
-import React, { useEffect } from "react";
-import { atom, useRecoilState } from "recoil";
+import React from 'react'
 
-const pokemonState = atom({
-    key: "pokemons",
-    default: [],
-});
-
-function Overview() {
-    const [pokemons, setPokemons] = useRecoilState(pokemonState);
-
-    useEffect(() => {
-        const getPokemon = async () => {
-            const url = "https://pokeapi.co/api/v2/pokemon/?limit=51";
-            const resp = await fetch(url);
-            const body = await resp.json();
-            setPokemons(body.results);
-        };
-
-        getPokemon();
-    }, []);
-            
-    return pokemons.map((pokemon) =>
-        <div key={pokemon.id}>
-            <p>{pokemon.name}</p>
+const Overview= ({id, image, name, type, _callback }) => {
+    const style = type + " overview-container";
+    return (
+        <div className={style}>
+            <div className="number"><small>#0{id}</small></div>
+            <img src={image} alt={name} />
+            <div className="detail-wrapper">
+                <h3>{name}</h3>
+                <small>Type: {type}</small>
+            </div>
         </div>
     )
-  
 }
 
 export default Overview;

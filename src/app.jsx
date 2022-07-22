@@ -8,7 +8,7 @@ import PokemonDetails from './atributes/pokemon-details'
 const App = () => {
 
    const[allPokemons, setAllPokemons] = useState([])
-   const [loadMore, setLoadMore] = useState('https://pokeapi.co/api/v2/pokemon?limit=20')
+   const [loadMore, setLoadMore] = useState('https://pokeapi.co/api/v2/pokemon?limit=51')
 
   const getAllPokemons = async () => {
     const res = await fetch(loadMore)

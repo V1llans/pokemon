@@ -8,13 +8,13 @@ import PokemonDetails from './atributes/pokemon-details'
 const App = () => {
 
    const[allPokemons, setAllPokemons] = useState([])
-   const [loadMore, setLoadMore] = useState('https://pokeapi.co/api/v2/pokemon?limit=51')
+   const [loadMore, newPage] = useState('https://pokeapi.co/api/v2/pokemon?limit=51')
 
   const getAllPokemons = async () => {
     const res = await fetch(loadMore)
     const data = await res.json()
 
-    setLoadMore(data.next)
+    newPage(data.next)
 
     function createPokemonObject(results)  {
       results.forEach( async pokemon => {

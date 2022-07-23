@@ -9,7 +9,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
   border: none  ;
 }
-
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
 button {
   margin-left: 20%;
   margin-right: 20%;
@@ -21,23 +24,17 @@ button {
   cursor: pointer;
   background-color: rgba(0, 0, 0, 0.185);
 }
-
 .delete-button {
   color: 	#C41E3A;
   margin-top: 5%;
 }
-
 .edit-button:hover {
   background-color: rgba(0 ,0 ,0 , 0.302);  
+  font-size: 16px;
 }
-
 .delete-button:hover {
   background-color: rgba(0 ,0 ,0 , 0.302);
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-size: 16px;
 }
 .rock {
   background-color: rgb(148, 81, 81);

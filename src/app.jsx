@@ -33,18 +33,19 @@ const App = () => {
 
   return (
     <div className="app-contaner">
-      <h1>Pokemon Evolution</h1>
+      <h1>PokeDex</h1>
       <div className="pokemon-container">
         <div className="all-container">
           {allPokemons.map( (pokemonStats, index) => 
-            <Overview
-              key={index}
-              id={pokemonStats.id}
-              image={pokemonStats.sprites.other.dream_world.front_default}
-              name={pokemonStats.name}
-              type={pokemonStats.types[0].type.name}
-            />)}
-          
+            <button type='button'>
+              <Overview
+                key={index}
+                id={pokemonStats.id}
+                image={pokemonStats.sprites.other.dream_world.front_default}
+                name={pokemonStats.name}
+                type={pokemonStats.types[0].type.name}
+              />
+            </button>)}
         </div>
       </div>
     </div>

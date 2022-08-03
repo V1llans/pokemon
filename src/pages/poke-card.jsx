@@ -14,9 +14,11 @@ const PokeCard = ({ id, image, name, type, _callback }) => {
       <div className="detail-wrapper">
         <h3>{name}</h3>
         <small>Type: {type}</small>
-        <button className="edit-button" type="button">
-          Edit
-        </button>
+        <Link to={"/edit"}>
+          <button className="edit-button" type="button">
+            Edit
+          </button>
+        </Link>
         <button className="delete-button" type="button">
           Delete
         </button>

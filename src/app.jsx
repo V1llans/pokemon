@@ -9,7 +9,7 @@ export default function App() {
     <Routes>
       <Route exact path="/" element={<Overview />} />
       <Route path="/:pokemon" element={<PokemonDetails />} />
-      <Route path="/:id" element={<changePokeInfo />}/>
+      <Route path="/:pokemon/edit" element={<ChangePokeInfo />}/>
     </Routes>
   );
 }

@@ -3,6 +3,7 @@ import PokemonDetails from './pokemon-details'
 import changePokeInfo from './change-poke-info'
 import PokeCard from './poke-card'
 
+
 const Overview = () => {
    const[allPokemons, setAllPokemons] = useState([])
    const [loadMore, newPage] = useState('https://pokeapi.co/api/v2/pokemon?limit=50')

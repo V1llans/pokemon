@@ -1,50 +1,36 @@
 import React, { useEffect, useState } from 'react'
-import PokemonDetails from './pokemon-details'
-import changePokeInfo from './change-poke-info'
 import PokeCard from './poke-card'
-
+import { useSelector, useDispatch } from 'react-redux'
+import { loadPokemonsAsync } from '../redux/thunks'
 
 const Overview = () => {
-   const[allPokemons, setAllPokemons] = useState([])
-   const [loadMore, newPage] = useState('https://pokeapi.co/api/v2/pokemon?limit=50')
+  const dispatch = useDispatch()
+  const {isLoading, pokemons, errorMessage} = useSelector(state => state.pokemons)
 
- useEffect(() => {
-  const getPokemons = async () => {
-    const res = await fetch(loadMore)
-    const data = await res.json()
-  
-    // newPage(data.next)
-    
-    const pokemons = await Promise.all(data.results.map(async (pokemon) => {
-      const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon.name}`)
-      const data = await res.json()
-      return data;
-    }));
-
-    setAllPokemons(pokemons);
-  }
-
-  getPokemons();
- }, []) 
+  useEffect(() => {
+    dispatch(loadPokemonsAsync())
+  }, [])
 
   return (
-      <div className="app-contaner">
-        <h1>PokeDex</h1>
-        <div className="pokemon-container">
-          <div className="all-container">
-            {allPokemons.map( (pokemonStats, index) => 
-            <div className='pokemon-card'>
-              <PokeCard 
-                key={index}
-                id={pokemonStats.id}
-                image={pokemonStats.sprites.other.dream_world.front_default}
-                name={pokemonStats.name}
-                type={pokemonStats.types[0].type.name}
-              />
+      <div className="app-container">
+          <h1>PokeDex</h1>
+          <div className="pokemon-container">
+            <div className="all-container">
+            {isLoading && <h3>loading...</h3>}
+            {errorMessage && <h3>{errorMessage}</h3>}
+            {pokemons?.results && pokemons.results.map((pokemon) =>
+              <div className='pokemon-card'>
+                <PokeCard 
+                  key={pokemon.index}
+                  id={pokemon.id}
+                  // image={pokemon.sprites.other.dream_world.front_default}
+                  name={pokemon.name}
+                  type={pokemon.types[0].type.name}
+                />
+              </div>
+              )}
             </div>
-            )}
           </div>
-        </div>
       </div>
   );
 }
